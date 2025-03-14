@@ -1,0 +1,190 @@
+body{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-color: #f8f9fa;
+    
+}
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    width: 100%;
+
+
+}
+
+.divForDashboard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100vw;
+    height: 40px;
+    justify-content: flex-start;
+    background-color: #66D2CE;
+}
+
+.innerDiv{
+    display: block;
+    justify-content: flex-end;
+    margin-right: 800px;
+    width: 100vw;
+    background-color: #66D2CE;
+    white-space: nowrap;
+    
+    
+}
+
+.navLinks{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-evenly;
+    align-self: stretch;
+    margin: 0;
+  /*  margin-right: 800px; */
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    text-decoration: none;
+
+}
+
+#inventoryLink{
+    text-decoration: none;
+    color: black;
+
+}
+
+#dashboardLink{
+    text-decoration: none;
+    color: black;
+}
+    
+
+
+li{
+    margin-bottom: 5px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding: 4px;
+}
+
+li:hover{
+    color: white;
+    background-color: #E3D2C3;
+    border-radius: 5px;
+}
+
+.dashboardContent{
+    display: grid;
+    width: 100vw;
+    height: calc(100vh - 60px);
+
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+    grid-template-rows: repeat(2, 1fr);  /* 2 equal rows */
+    gap: 5px;
+    background-color: #EAEAEA;
+    height: calc(100vh - 60px); /* Adjusted height minus navbar */
+    width: 100%;
+    margin: auto;
+    
+
+}
+
+.container > div{
+    background-color: white;
+    border: 2px solid black;
+    color: #000;
+    padding: 20px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s ease-in-out;  
+}
+
+.container > div:hover {
+    transform: translateY(-4px); /* Slight lift on hover */
+}
+
+
+
+.InventoryPageBody{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    /* keep horizontal centering */
+    /* avoid default browser margins */
+    
+}
+
+.searchBar{
+    display: flex;
+    margin-top: 60px;
+    background-color: #E3D2C3;
+    width: 1000px;
+    height: 75px;
+    border-radius: 5px;
+    justify-content: flex-end;
+
+}
+
+.size-4{
+    margin-top: 35px;
+    margin-right: 5px;
+    height: 32px;
+    width: 32px;
+    color: #697d62;
+}
+
+.size-2{
+    margin-top: 35px;
+    margin-right: 5px;
+    height: 32px;
+    width: 32px;
+    color: #697d62;
+}
+
+.size-3{
+    margin-top: 35px;
+    margin-right: 5px;
+    height: 32px;
+    width: 32px;
+    color: #697d62;
+}
+
+.searchBarInput{
+    margin-top: 30px;
+    margin-right: 250px;
+    width: 500px;
+    height: 30px;
+    border-radius: 3px;
+    border-color: white;
+    
+}
+
+
+.searchBarInput:focus{
+    border-color:#697d62 ;
+}
+
+.resultSearch{
+    margin-top: 50px;
+    width: 1000px;
+    height: 30px;
+    background-color: #EAEAEA;
+}

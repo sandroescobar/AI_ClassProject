@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+</head>
+<body>
+   <div class = "mainDiv">
+     {% include 'navbar.html' %}
+    <div class = "container">
+        <div class = "totalProducts">
+            <h2>Total Products</h2>
+        </div>
+        <div class = "recentRecieves"> 
+            <h2>Recent Receives</h2>
+        </div>
+        <div class = "lowStockAlert">
+            <h2>Low Stock Alert</h2>
+        </div>
+        <div class = "quickActions">
+            <h2>Quick Actions</h2>
+        </div>
+        <div class = "stockMovement" >
+            <h2>Stock Movement</h2>
+        </div>
+        <div class = "userActivity">
+            <h2>User Activity</h2>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+   <script src="index.js"></script>
+
+   
+</body>

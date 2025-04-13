@@ -1,0 +1,95 @@
+
+<style>
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
+
+    .modalContent {
+        display: flex;
+        background-color: #fefefe;
+        justify-content: center;
+        align-items: center ;
+        flex-direction: column;
+        border: 1px solid #888;
+        width: 200px;
+        height: 160px;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .submitCategory{
+        margin-top: 8px;
+        border-radius: 4px;
+        border-color: black;
+        background-color: #2c3e50;
+        color: white;
+        width: 165px;
+        font-family: "Inter", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 15px;
+    }
+
+
+    .categoryName{
+        border-radius: 4px;
+        width: 165px;
+        border-color: #2c3e50;
+        font-family: "Inter", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 15px;
+    }
+
+    .modalHeader{
+        font-family: "Inter", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+    }
+
+    .cancelCategory{
+        margin-top: 8px;
+        border-radius: 4px;
+        width: 165px;
+        border-color: #2c3e50;
+        font-family: "Inter", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 15px;
+        
+
+    }
+
+</style>
+
+
+<body>
+
+    <div class = "modal">
+        <div class = "modalContent">
+            <h3 class = "modalHeader">Category name</h3>
+            <input name = "categoryName" type="text" class="categoryName" placeholder="Category name" required>
+            <button class = "submitCategory">
+                <span>Submit</span>
+            </button>
+            <button class = "cancelCategory">
+                <span>Cancel</span>
+            </button>
+    
+        </div>
+    
+    </div>
+
+</body>
+
+

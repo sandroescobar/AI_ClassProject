@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products in {{ category }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 100%; max-width: 800px; }
+    table, th, td { border: 1px solid #ddd; }
+    th, td { padding: 8px; text-align: left; }
+    th { background-color: #2c3e50; color: #fff; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    a { text-decoration: none; color: #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>Products in "{{ category }}"</h1>
+  <p><a href="{{ url_for('products') }}">← Back to Categories</a></p>
+  {% if items %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No items found for this category.</p>
+  {% endif %}
+</body>
+</html>

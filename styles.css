@@ -134,7 +134,7 @@ li:hover {
 
 .add-category {
     filter: invert(21%) sepia(35%) saturate(527%) hue-rotate(169deg) brightness(91%) contrast(92%) !important;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 
@@ -173,7 +173,7 @@ li:hover {
     width: 500px;
     /* Increase height for more spacing */
     height: auto; /* UPDATED: Let content define height */
-    
+
 }
 
 .itemNameH,
@@ -412,7 +412,7 @@ li:hover {
     appearance: none; /* Remove default dropdown */
     -webkit-appearance: none;
     -moz-appearance: none;
-    
+
 }
 
 /* Custom dropdown arrow positioning */
@@ -515,4 +515,43 @@ li:hover {
     opacity: 0;
     position: absolute;
     left: -9999px;
+}
+
+
+.totalProducts,  /* << the dot is critical */
+.recentRecieves,
+.lowStockAlert,
+.quickActions,
+.stockMovement,
+.userActivity {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+.chart-container {
+  width: 600px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #999;
+}
+
+/* Force Plotly to fill the container */
+.chart-container .js-plotly-plot,
+.chart-container .plotly-graph-div,
+.chart-container .plotly,
+.chart-container .main-svg,
+.chart-container svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+
+.js-plotly-plot .modebar {
+
+  transform: scale(0.75);
+  transform-origin: top right;
+  margin-top: -10px;   /* fine-tune to avoid clipping */
+  margin-right: -10px;
 }

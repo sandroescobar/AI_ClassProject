@@ -1,44 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body class = "dashboardBody">
-   <div class = "mainDiv">
-     {% include 'navbar.html' %}
-    <div class = "container">
-        <div class = "totalProducts">
-            <h2>Total Products</h2>
-        </div>
-        <div class = "recentRecieves"> 
-            <h2>Recent Receives</h2>
-        </div>
-        <div class = "lowStockAlert">
-            <h2>Low Stock Alert</h2>
-        </div>
-        <div class = "quickActions">
-            <h2>Quick Actions</h2>
-        </div>
-        <div class = "stockMovement" >
-            <h2>Stock Movement</h2>
-        </div>
-        <div class = "userActivity">
-            <h2>User Activity</h2>
-        </div>
+<body class="dashboardBody">
+  <div class="mainDiv">
+    {% include 'navbar.html' %}
 
-    </div>
+    <div class="container">
 
-</div>
+      <!-- BOX 1: Total Products -->
+      <div class="totalProducts">
+        <h2>Total Products</h2>
+        {% if charts %}
+          <div class="chart-container">
+            {{ charts.chart1|safe }}
+          </div>
+        {% else %}
+          <p>No data yet.</p>
+        {% endif %}
+      </div>
 
+      <!-- BOX 2: Recent Receives -->
+      <div class="recentRecieves">
+        <h2>Recent Receives</h2>
+        {% if charts %}
+          <div class="chart-container">
+            {{ charts.chart4|safe }}
+          </div>
+        {% else %}
+          <p>No data yet.</p>
+        {% endif %}
+      </div>
 
+      <!-- BOX 3: Low Stock Alert -->
+      <div class="lowStockAlert">
+        <h2>Low Stock Alert</h2>
+        {% if charts %}
+          <div class="chart-container">
+            {{ charts.chart2|safe }}
+          </div>
+        {% else %}
+          <p>No data yet.</p>
+        {% endif %}
+      </div>
 
+      <!-- BOX 4: Quick Actions -->
+      <div class="quickActions">
+        <h2>Quick Actions</h2>
+        <p>(Optional button actions go here)</p>
+      </div>
 
-   <script src="{{ url_for('static', filename='JS/index.js') }}"></script>
+      <!-- BOX 5: Stock Movement -->
+      <div class="stockMovement">
+        <h2>Stock Movement</h2>
+        {% if charts %}
+          <div class="chart-container">
+            {{ charts.chart3|safe }}
+          </div>
+        {% else %}
+          <p>No data yet.</p>
+        {% endif %}
+      </div>
 
-   
+      <!-- BOX 6: User Activity -->
+      <div class="userActivity">
+        <h2>User Activity</h2>
+        {% if charts %}
+          <div class="chart-container">
+            {{ charts.chart5|safe }}
+          </div>
+        {% else %}
+          <p>No data yet.</p>
+        {% endif %}
+      </div>
+
+    </div> <!-- end .container -->
+
+  </div> <!-- end .mainDiv -->
+
+  <script src="{{ url_for('static', filename='JS/index.js') }}"></script>
 </body>
+</html>

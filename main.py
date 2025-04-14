@@ -1,8 +1,12 @@
+import plotly.express as px
+import plotly.io as pio
+import pandas as pd
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import pandas as pd
 from sqlalchemy import create_engine
+
+import numpy as np
 
 app = Flask(__name__)
 
@@ -25,6 +29,9 @@ engine = create_engine('mysql://root:Ae9542790079@localhost/inventory')
 ###############################################################################
 
 
+
+
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     msg = ''
@@ -39,7 +46,7 @@ def login():
             session['id'] = account['id']
             session['email'] = account['email']
             msg = 'Logged in successfully!'
-            return render_template('dashboard.html', msg=msg)
+            return redirect(url_for('dashboard'))
         else:
             msg = 'Incorrect email or password'
     return render_template('login.html')
@@ -69,9 +76,194 @@ def signUp():
     return render_template('signUp.html')
 
 
+
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    """
+    1) Load data from `csvinfo`.
+    2) If table is empty => pass `charts=None` => placeholders in the template.
+    3) If data exists => create 5 interactive Plotly charts:
+       - chart1: Top 10 Item Types by Units Sold
+       - chart2: Top 10 Item Types by Total Profit
+       - chart3: Monthly Units Sold
+       - chart4: Monthly Total Revenue
+       - chart5: Monthly Total Profit
+    4) Pass `charts` dict to `dashboard.html`.
+    """
+    try:
+        # 1. Fetch data from MySQL
+        df = pd.read_sql("SELECT * FROM csvinfo", con=engine)
+        if df.empty:
+            # => no CSV data => show placeholders
+            return render_template('dashboard.html', charts=None)
+
+        # 2. Ensure columns are correct & parse date
+        #    (Adjust the rename if your DB columns differ)
+        df.rename(columns={
+            'orderDate': 'OrderDate',
+            'itemType': 'ItemType',
+            'unitsSold': 'UnitsSold',
+            'totalRevenue': 'TotalRevenue',
+            'totalProfit': 'TotalProfit'
+        }, inplace=True, errors='ignore')
+
+        # Convert date to datetime
+        df['OrderDate'] = pd.to_datetime(df['OrderDate'], errors='coerce')
+        # Drop rows where we can't parse date
+        df.dropna(subset=['OrderDate'], inplace=True)
+
+        # Convert numeric
+        for col in ['UnitsSold', 'TotalRevenue', 'TotalProfit']:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+
+        # 3. Create the 5 interactive Plotly charts
+        #    We'll do the same logic you had in Matplotlib, but using Plotly.
+
+        # (A) Top 10 Item Types by Total Units Sold
+        top_units = (
+            df.groupby("ItemType")['UnitsSold']
+              .sum()
+              .sort_values(ascending=False)
+              .head(10)
+              .reset_index()
+        )
+        fig1 = px.bar(top_units, x='UnitsSold', y='ItemType',
+                      orientation='h', title="Top 10 Item Types by Total Units Sold")
+
+        # IMPORTANT: Force Plotly to autosize
+        fig1.update_layout(
+            autosize=True,
+            width=400,
+            height=400,
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+
+        chart1 = pio.to_html(
+            fig1,
+            full_html=False,
+            config={
+                "displayModeBar": False,
+                "displaylogo": False
+            }
+        )
+
+
+
+
+        # (B) Top 10 Item Types by Total Profit
+        top_profit = (
+            df.groupby("ItemType")['TotalProfit']
+              .sum()
+              .sort_values(ascending=False)
+              .head(10)
+              .reset_index()
+        )
+        fig2 = px.bar(top_profit, x='ItemType', y='TotalProfit',
+                      title="Top 10 Item Types by Total Profit")
+        fig2.update_layout(
+            autosize=True,
+            width=400,
+            height=400,
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+
+        chart2 = pio.to_html(
+            fig2,
+            full_html=False,
+            config={
+                "displayModeBar": False,
+                "displaylogo": False
+            }
+        )
+
+
+
+
+
+
+
+
+
+        # For the monthly time series, we need a DateTime index
+        df.set_index('OrderDate', inplace=True)
+        df_monthly = df.resample('ME').sum(numeric_only=True).reset_index()
+
+        # (C) Monthly Units Sold
+        fig3 = px.line(df_monthly, x='OrderDate', y='UnitsSold',
+                       title='Monthly Units Sold')
+        # IMPORTANT: Force Plotly to autosize
+        fig3.update_layout(
+            autosize=True,
+            width=400,
+            height=400,
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+        chart3 = pio.to_html(
+            fig3,
+            full_html=False,
+            config={
+                "displayModeBar": False,
+                "displaylogo": False
+            }
+        )
+
+
+
+        # (D) Monthly Total Revenue
+        fig4 = px.line(df_monthly, x='OrderDate', y='TotalRevenue',
+                       title='Monthly Total Revenue')
+        # IMPORTANT: Force Plotly to autosize
+        fig4.update_layout(
+            autosize=True,
+            width=400,
+            height=400,
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+        chart4 = pio.to_html(
+            fig4,
+            full_html=False,
+            config={
+                "displayModeBar": False,
+                "displaylogo": False
+            }
+        )
+
+
+        # (E) Monthly Total Profit
+        fig5 = px.line(df_monthly, x='OrderDate', y='TotalProfit',
+                       title='Monthly Total Profit')
+        # IMPORTANT: Force Plotly to autosize
+        fig5.update_layout(
+            autosize=True,
+            width=400,
+            height=400,
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+        chart5 = pio.to_html(
+            fig5,
+            full_html=False,
+            config={
+                "displayModeBar": False,
+                "displaylogo": False
+            }
+        )
+
+
+
+        # 4. Pass the charts to the template
+        charts = {
+            'chart1': chart1,
+            'chart2': chart2,
+            'chart3': chart3,
+            'chart4': chart4,
+            'chart5': chart5
+        }
+        return render_template('dashboard.html', charts=charts)
+
+    except Exception as e:
+        print("Dashboard error:", e)
+        return render_template('dashboard.html', charts=None)
 
 
 @app.route('/products')
@@ -134,6 +326,9 @@ def recieveInventory():
                     'Total Cost': 'totalCost',
                     'Total Profit': 'totalProfit'
                 }, inplace=True)
+
+                print("After rename:", df.columns.tolist())
+                print("Checking for null 'Order Date':", df['Order Date'].isna().sum())
 
                 # Convert date columns to YYYY-MM-DD
                 df['orderDate'] = pd.to_datetime(df['orderDate'], format='%m/%d/%Y', errors='coerce')

@@ -1,105 +1,93 @@
-body{
+/* Basic page structure for dashboard*/
+.dashboardBody {
     display: flex;
     height: 100vh;
     width: 100%;
     margin: 0;
-    background-color: #f8f9fa;
-    
+    background-color: #ecf0f1;
 }
-.mainDiv{
+
+/* main div that holds the dashboard and graph appearances in dashboard*/
+.mainDiv {
     display: flex;
     flex-direction: column;
-    width: 100vh;
     width: 100%;
-
-
 }
 
-.divForDashboard{
+/* Div for the dashboard that holds all options */
+.divForDashboard {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100vw;
     height: 40px;
     justify-content: flex-start;
-    background-color: #66D2CE;
+    background-color: #2c3e50;
 }
-
-.innerDiv{
+/* div that holds all links, is a child div */
+.innerDiv {
     display: block;
     justify-content: flex-end;
     margin-right: 800px;
     width: 100vw;
-    background-color: #66D2CE;
+    background-color: #2c3e50;
     white-space: nowrap;
-    
-    
 }
 
-.navLinks{
+/* ul that holds the links*/
+.navLinks {
     display: flex;
     flex-direction: row;
     list-style: none;
     justify-content: space-evenly;
     align-self: stretch;
     margin: 0;
-  /*  margin-right: 800px; */
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
     text-decoration: none;
-
 }
 
-#inventoryLink{
+/* specfic styling for the links */
+#inventoryLink,
+#dashboardLink {
     text-decoration: none;
-    color: black;
-
+    color: white;
 }
 
-#dashboardLink{
-    text-decoration: none;
-    color: black;
-}
-    
-
-
-li{
+/* styling for all links in the navbar */
+li {
     margin-bottom: 5px;
     transition-duration: 0.4s;
     cursor: pointer;
     padding: 4px;
+    color: white;
 }
 
-li:hover{
+/* styling for dashboard links to get hover effect */
+li:hover {
     color: white;
-    background-color: #E3D2C3;
+    background-color: #3e5a72;
     border-radius: 5px;
 }
 
-.dashboardContent{
+/* div that holds the graph appearances*/
+.container {
     display: grid;
-    width: 100vw;
-    height: calc(100vh - 60px);
-
-}
-
-.container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
-    grid-template-rows: repeat(2, 1fr);  /* 2 equal rows */
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(2, 1fr);    /* 2 equal rows */
     gap: 5px;
     background-color: #EAEAEA;
     height: calc(100vh - 60px); /* Adjusted height minus navbar */
     width: 100%;
     margin: auto;
-    
-
 }
 
-.container > div{
+
+/*styling for all graph holders in dashboard */
+.container > div {
     background-color: white;
     border: 2px solid black;
     color: #000;
@@ -110,81 +98,421 @@ li:hover{
     font-style: normal;
     font-size: 10px;
     border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.2s ease-in-out;  
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
 }
 
+/* hover effect for dashboard graph holders*/
 .container > div:hover {
-    transform: translateY(-4px); /* Slight lift on hover */
+    transform: translateY(-4px);
 }
 
-
-
-.InventoryPageBody{
+/* Inventory page body */
+.InventoryPageBody {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     justify-content: flex-start;
     align-items: center;
-    /* keep horizontal centering */
-    /* avoid default browser margins */
-    
 }
 
-.searchBar{
+
+
+
+/* Example filter for your plus icon */
+.size-4 {
+    margin-top: 15px;
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+    filter: invert(54%) sepia(97%) saturate(1212%) hue-rotate(177deg) brightness(88%) contrast(94%);
+}
+
+
+
+
+.add-category {
+    filter: invert(21%) sepia(35%) saturate(527%) hue-rotate(169deg) brightness(91%) contrast(92%) !important;
+    cursor: pointer; 
+}
+
+
+
+
+.size-2 {
+    margin-top: 16px;
+    margin-right: 5px;
+    height: 30px;
+    width: 30px;
+    filter: invert(54%) sepia(97%) saturate(1212%) hue-rotate(177deg) brightness(88%) contrast(94%);
+}
+
+.size-3 {
+    margin-top: 15px;
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+    filter: invert(54%) sepia(97%) saturate(1212%) hue-rotate(177deg) brightness(88%) contrast(94%);
+}
+
+
+
+/* Add Items Page layout */
+.addItemsPage {
     display: flex;
-    margin-top: 60px;
-    background-color: #E3D2C3;
-    width: 1000px;
-    height: 75px;
-    border-radius: 5px;
-    justify-content: flex-end;
-
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ecf0f1;
 }
 
-.size-4{
-    margin-top: 35px;
-    margin-right: 5px;
-    height: 32px;
-    width: 32px;
-    color: #697d62;
-}
-
-.size-2{
-    margin-top: 35px;
-    margin-right: 5px;
-    height: 32px;
-    width: 32px;
-    color: #697d62;
-}
-
-.size-3{
-    margin-top: 35px;
-    margin-right: 5px;
-    height: 32px;
-    width: 32px;
-    color: #697d62;
-}
-
-.searchBarInput{
-    margin-top: 30px;
-    margin-right: 250px;
+.nameDiv {
     width: 500px;
-    height: 30px;
-    border-radius: 3px;
-    border-color: white;
+    /* Increase height for more spacing */
+    height: auto; /* UPDATED: Let content define height */
     
 }
 
-
-.searchBarInput:focus{
-    border-color:#697d62 ;
+.itemNameH,
+.itemQuantityH,
+.itemCategoryH {
+    margin-bottom: 10px;
+    margin-top: 15px; /* a bit of vertical space above */
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: #2c3e50;
+    font-size: 16px; /* UPDATED: bigger label text */
 }
 
-.resultSearch{
-    margin-top: 50px;
-    width: 1000px;
+.itemQuantity,
+.itemClass,
+.quantityName,
+.dropdown-toggle {
+    display: block;
+    width: 450px;
+    height: 25px; /* UPDATED: taller input for a modern look */
+    padding: 6px 10px; /* add padding for a nicer feel */
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-family: "Inter", serif;
+    box-shadow: none;
+    outline: none;
+}
+
+/* On focus, highlight the border for a more modern look */
+.itemQuantity:focus,
+.itemClass:focus,
+.quantityName:focus,
+.dropdown-toggle:focus {
+    border-color: #2c3e50;
+}
+
+/* The "Submit" button */
+.submitItem {
+    margin-top: 20px;
+    padding: 8px 15px; /* UPDATED: more comfortable spacing */
+    background-color: #2c3e50;
+    color: white;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    border-radius: 3px;
+    border: none; /* remove default border */
+    width: 120px;
+    height: auto;
+    cursor: pointer; /* indicate clickable */
+}
+
+.submitItem:hover {
+    background-color: #34495e; /* slightly darker on hover */
+}
+
+/* Sign In / Up pages */
+.signIn {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 450px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
     height: 30px;
-    background-color: #EAEAEA;
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.signInHeader {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    text-decoration: none;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.loginBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: #2c3e50 !important;
+    border-color: #2c3e50 !important;
+}
+
+.signUpBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUp {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 450px;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpHeader {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    text-decoration: none;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Modal CSS */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex; /* When toggled, show as flex container */
+}
+
+.modalContent {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #888;
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.submitCategory {
+    margin-top: 8px;
+    border-radius: 4px;
+    background-color: #2c3e50;
+    color: white;
+    width: 172px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    border: none; /* remove default border */
+    cursor: pointer;
+}
+
+.submitCategory:hover {
+    background-color: #34495e;
+}
+
+.categoryName {
+    border-radius: 4px;
+    width: 165px;
+    border: 1px solid #2c3e50;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    padding: 5px;
+}
+
+
+
+.modalHeader {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.cancelCategory {
+    margin-top: 8px;
+    border-radius: 4px;
+    width: 172px;
+    border: 1px solid #2c3e50;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.cancelCategory:hover {
+    background-color: #eee;
+}
+
+.customSelectWrapper {
+    position: relative;
+    width: 450px;
+}
+
+/* Style for the select dropdown to match input fields */
+.categorySelect {
+    width: 100%;
+    height: 30px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    font-size: 13px;
+    font-family: "Inter", serif;
+    appearance: none; /* Remove default dropdown */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+}
+
+/* Custom dropdown arrow positioning */
+.categorySelect::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #2c3e50;
+    pointer-events: none;
+}
+
+/* On focus, highlight the border */
+.categorySelect:focus {
+    border-color: #2c3e50;
+    box-shadow: 0 0 5px rgba(44, 62, 80, 0.3);
+}
+
+/* Submit Button Styling */
+.submitItem {
+    margin-top: 20px;
+    padding: 8px 15px;
+    background-color: #2c3e50;
+    color: white;
+    font-family: "Inter", serif;
+    font-size: 14px;
+    border-radius: 3px;
+    border: none;
+    width: 120px;
+    height: auto;
+    cursor: pointer;
+}
+
+.submitItem:hover {
+    background-color: #34495e;
+}
+
+
+.customSelectWrapper::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #2c3e50;
+    pointer-events: none;
+}
+
+
+
+.OptionDiv{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 75px;
+    left: 160px;
+}
+
+
+.headerForItems {
+    display: flex;
+    margin-top: 92px;
+    flex-direction: row;
+    width: 900px;
+    padding: 0 20px;
+}
+
+.headerForItems h6 {
+    width: 200px;         /* Set a fixed width for each column */
+    margin: 0;
+    font-weight: bold;
+}
+
+.dataHolder {
+    display: flex;
+    background-color: lightgray;
+    width: 900px;
+    height: 35px;
+    border-radius: 3px;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.dataContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.dataContent span {
+    width: 200px;        /* Same width as headers */
+    text-align: left;
+}
+
+
+.file-upload_input{
+    opacity: 0;
+    position: absolute;
+    left: -9999px;
 }

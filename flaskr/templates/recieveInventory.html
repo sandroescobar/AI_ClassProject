@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <!-- Your stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="InventoryPageBody">
+    {% include 'navbar.html' %}
+    <div class = "OptionDiv">
+      <a href="{{ url_for('addInventory') }}">
+        <img class="size-2" width="30" height="30" src="https://img.icons8.com/ios-filled/50/plus-2-math.png" alt="plus-2-math"/>
+      </a>
+      
+      <form id="uploadForm" method="POST" action="/recieveInventory" enctype="multipart/form-data">
+        <input type="hidden" name="form_id" value="addCsvFile"/>
+        <a>
+          <input 
+            class="file-upload_input" 
+            type="file" 
+            name="csv_file" 
+            id="myFile" 
+            style="display: none;"
+            onchange="document.getElementById('uploadForm').submit();" 
+          />
+          
+          <!-- No inline onclick -->
+          <img 
+            class="size-2 upload-file" 
+            width="30" 
+            height="30" 
+            src="https://img.icons8.com/fluency-systems-regular/48/file-upload.png" 
+            alt="file-upload"
+          />
+        </a>
+      </form>
+      
+    
+      
+    </div>
+
+    <div class = "headerForItems">
+      <h6>ID</h6>
+      <h6>Name</h6>
+      <h6>Quantity</h6>
+      <h6>Category</h6>
+
+    </div>
+    <div class = "dataHolder">
+      <div class = "dataContent">
+        <span class = "IDHolder">-</span>
+      <span class = "nameHolder">-</span>
+      <span class = "quantityHolder">-</span>
+      <span class = "categoryHolder">-</span>
+
+      </div>
+      
+
+    </div>
+  
+
+  
+
+    
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="{{ url_for('static', filename='JS/index.js') }}"></script>
+  
+</body>
+</html>
